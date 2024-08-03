@@ -1,0 +1,10 @@
+# Ignore el binario compilado
+/auth_service
+
+# Archivos y directorios específicos del entorno
+.env
+.idea
+.vscode
+*.log
+*.tmp
+node_modules
