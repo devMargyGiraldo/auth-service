@@ -5,7 +5,10 @@ import (
 	"log"
 	"net/http"
 
+	_ "auth_service/docs"
+
 	"github.com/gorilla/mux"
+	httpSwagger "github.com/swaggo/http-swagger"
 )
 
 func NewRouter(authHandler *handler.AuthHandler) *mux.Router {
@@ -13,6 +16,8 @@ func NewRouter(authHandler *handler.AuthHandler) *mux.Router {
 
 	r.HandleFunc("/register", authHandler.Register).Methods("POST")
 	r.HandleFunc("/login", authHandler.Login).Methods("POST")
+
+	r.PathPrefix("/swagger").Handler(httpSwagger.WrapHandler)
 
 	return r
 }

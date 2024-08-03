@@ -1,6 +1,7 @@
 package main
 
 import (
+	_ "auth_service/docs"
 	"auth_service/internal/infrastructure"
 	"auth_service/internal/interfaces/handler"
 	"auth_service/internal/interfaces/repository"

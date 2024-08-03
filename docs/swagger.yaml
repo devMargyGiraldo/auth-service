@@ -1,0 +1,78 @@
+definitions:
+  domain.User:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /login:
+    post:
+      consumes:
+      - application/json
+      description: Inicia sesión con un nombre de usuario y contraseña
+      parameters:
+      - description: Información del usuario
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/domain.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: token
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Invalid request
+          schema:
+            type: string
+        "401":
+          description: Invalid credentials
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: Inicia sesión de un usuario
+      tags:
+      - auth
+  /register:
+    post:
+      consumes:
+      - application/json
+      description: Registra un nuevo usuario con un nombre de usuario y contraseña
+      parameters:
+      - description: Información del usuario
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/domain.User'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: User registered
+          schema:
+            type: string
+        "400":
+          description: Invalid request
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: Registra un nuevo usuario
+      tags:
+      - auth
+swagger: "2.0"
